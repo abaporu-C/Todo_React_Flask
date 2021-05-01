@@ -33,8 +33,16 @@ export const TodoPage = () => {
         }).then(response => {           
             return response.json()
         })
-        .then(message => console.log(message))
+        .then(message => {            
+            setAddTodo('')
+            getLatestTodos()
+        })
+    }
 
+    const getLatestTodos = () => {
+        fetch('api').then(res => {
+            if (res) return res.json()
+        }).then(data => setTodo(data))
     }
 
     return (
